@@ -1,0 +1,62 @@
+###
+POST http://localhost:3000/api/user/register
+Content-Type: application/json
+
+{
+  "name": "Miguel Riveros M.",
+  "email": "migueldh00@gmail.com",
+  "password": "0303456",
+  "role": "Maker",
+  "institution": "Hospital Sotero del rio"
+}
+
+###
+POST http://localhost:3000/api/user/login
+Content-Type: application/json
+
+{
+  "email": "migueldh00@gmail.com",
+  "password": "0303456"
+}
+
+### 
+GET http://localhost:3000/api/user/renewToken
+Content-Type: application/json
+
+{
+  "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZTg5YTlkMzJmYWFhOTE0MmMyOTc2NzgiLCJlbWFpbCI6Im1pZ3VlbGRoMDBAZ21haWwuY29tIiwiaWF0IjoxNTg2MDgxODUwfQ.GVsLYWUOBDfJ-KdCo87lKoX1--JZWCGqW7KYO4zLib8",
+  "_id": "5e89a9d32faaa9142c297678"
+}
+
+###
+GET http://localhost:3000/api/request/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZTg5YTlkMzJmYWFhOTE0MmMyOTc2NzgiLCJlbWFpbCI6Im1pZ3VlbGRoMDBAZ21haWwuY29tIiwiaWF0IjoxNTg2MDgzOTA3LCJleHAiOjE1ODYwODU3MDd9.bnsoMPbFkbwXeyILdvXioV1GC9wU7lYDxieoum6DuB4
+
+###
+GET http://localhost:3000/api/request/makersQueue
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZTg5YTlkMzJmYWFhOTE0MmMyOTc2NzgiLCJlbWFpbCI6Im1pZ3VlbGRoMDBAZ21haWwuY29tIiwiaWF0IjoxNTg2MDg1NzgwLCJleHAiOjE1ODYwODc1ODB9.zcZVOn6T7w1BkSCTP6339flhWwlBBk_ym6CoQmKxLbs
+Content-Type: application/json
+
+###
+POST http://localhost:3000/api/request/new
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZTg5YTlkMzJmYWFhOTE0MmMyOTc2NzgiLCJlbWFpbCI6Im1pZ3VlbGRoMDBAZ21haWwuY29tIiwiaWF0IjoxNTg2MDg1NzgwLCJleHAiOjE1ODYwODc1ODB9.zcZVOn6T7w1BkSCTP6339flhWwlBBk_ym6CoQmKxLbs
+Content-Type: application/json
+
+{
+  "type": "Solicitud",
+  "category": "Filamentos",
+  "detail": "Re100 salidas del horno",
+  "amount": 12,
+  "role": "Maker"
+}
+
+###
+POST http://localhost:3000/api/request/acceptedRequest
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZTg5YTlkMzJmYWFhOTE0MmMyOTc2NzgiLCJlbWFpbCI6Im1pZ3VlbGRoMDBAZ21haWwuY29tIiwiaWF0IjoxNTg2MDgzOTA3LCJleHAiOjE1ODYwODU3MDd9.bnsoMPbFkbwXeyILdvXioV1GC9wU7lYDxieoum6DuB4
+Content-Type: application/json
+
+{
+  "_id": "5e89b588276d202f601c52fc",
+  "amount": 12,
+  "note": "asdddsad"
+}
