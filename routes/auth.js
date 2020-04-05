@@ -95,4 +95,15 @@ router.get('/renewToken', async(req, res) => {
   
 })
 
+router.post('/logout', async(req, res) => {
+  try {
+    user = await User.find({ refreshToken: req.body.token })
+    user[0].refreshToken = ''
+    const saved = await user[0].save()
+    if ( saved ) res.send({ message: 'You are now logged out'})
+  } catch(err) {
+    res.status(400).send({ message: 'Invalid token' })
+  }
+})
+
 module.exports = router

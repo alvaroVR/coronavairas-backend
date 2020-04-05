@@ -19,6 +19,14 @@ Content-Type: application/json
   "password": "0303456"
 }
 
+###
+POST http://localhost:3000/api/user/logout
+Content-Type: application/json
+
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZTg5YTlkMzJmYWFhOTE0MmMyOTc2NzgiLCJlbWFpbCI6Im1pZ3VlbGRoMDBAZ21haWwuY29tIiwiaWF0IjoxNTg2MDg3NDAyfQ.zZJz4_IX5ibe2wsEibIw0IBPO1rytz4H3PBNNTROU4M"
+}
+
 ### 
 GET http://localhost:3000/api/user/renewToken
 Content-Type: application/json
