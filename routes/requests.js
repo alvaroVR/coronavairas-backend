@@ -53,7 +53,7 @@ router.post('/acceptedRequest', authToken, async(req, res) => {
 
   try {
     const acceptedRequest = {
-      user: req.user._id,
+      user_id: req.user._id,
       amount: req.body.amount,
       note: req.body.note
     } 
