@@ -7,7 +7,7 @@ const registerValidation = (data) => {
     email: Joi.string().min(6).required().email(),
     password: Joi.string().min(6).required(),
     role: Joi.string().valid('Solicitante', 'Maker', 'Patrocinador').required(),
-    institution: Joi.string()
+    institution: Joi.string().default('').allow('')
   })
   return schema.validate(data)
 }

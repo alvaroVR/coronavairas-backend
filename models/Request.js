@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const User = require('../models/User')
 
 const requestSchema = new mongoose.Schema({
   type: {
@@ -19,8 +20,10 @@ const requestSchema = new mongoose.Schema({
     min: 1,
     max: 9999
   },
-  user_id: {
-    type: String,
+  user: {
+    type: Object,
+    ref: 'User',
+    foreignField: '_id',
     required: true
   },
   role: {

@@ -53,7 +53,7 @@ router.post('/login', async(req, res) => {
   if ( !validPass ) return res.status(400).send({ message: 'Invalid password' })
 
   // Create/Assign token
-  tokenData = { _id: user._id, email: user.email }
+  tokenData = { _id: user._id, email: user.email, role: user.role }
   const accessToken = jwt.sign(tokenData, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '30m' })
   const refreshToken = jwt.sign(tokenData, process.env.REFRESH_TOKEN_SECRET)
   user.refreshToken = refreshToken // Se asigna el refresh token del user en mongo
@@ -63,6 +63,7 @@ router.post('/login', async(req, res) => {
     res.send({ 
       _id: user._id, 
       email: user.email, 
+      role: user.role,
       accessToken: accessToken, 
       refreshToken: refreshToken 
     })
@@ -75,14 +76,14 @@ router.post('/login', async(req, res) => {
 // Using renew token
 router.get('/renewToken', async(req, res) => {
   const refreshToken = req.body.refreshToken
-  if (refreshToken == null) return res.sendStatus(401)
+  if (refreshToken == null) return res.status(401).send({ message: 'Invalid token'})
 
   try{
     userData = await User.findById(req.body._id)
     if (userData.refreshToken !== refreshToken) return res.status(403).send({ message: 'Invalid token'})
   
     jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (err, user) => {
-      if (err) return res.sendStatus(403)
+      if (err) return res.sendStatus(403).send({ message: 'Invalid token'})
       // const accessToken = generateAccessToken({ name: user.name })
       tokenData = { _id: user._id, email: user.email }
       const accessToken = jwt.sign(tokenData, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '30m' })

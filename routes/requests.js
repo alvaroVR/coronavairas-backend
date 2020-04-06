@@ -1,6 +1,7 @@
 const router = require('express').Router()
 const authToken = require('./verifyToken')
 const Request = require('../models/Request')
+const User = require('../models/User')
 // Require validations... (TO DO)
 
 router.get('/', authToken, async(req, res) => {
@@ -17,7 +18,8 @@ router.get('/makersQueue', authToken, async(req, res) => {
     const requests = await Request.find({
       type: "Solicitud",
       category: ["Mascarillas", "Viseras"]
-    })
+    }).populate('user').exec()
+    
     res.json(requests)
   } catch (err) {
     res.status(500).send({message: err.message})
@@ -33,8 +35,8 @@ router.post('/new', authToken, async(req, res) => {
       category: req.body.category,
       detail: req.body.detail,
       amount: req.body.amount,
-      role: req.body.role,
-      user_id: req.user._id
+      role: req.user.role,
+      user: req.user._id
     })
     request = await newRequest.save()
     res.send(request)
@@ -51,7 +53,7 @@ router.post('/acceptedRequest', authToken, async(req, res) => {
 
   try {
     const acceptedRequest = {
-      user_id: req.user._id,
+      user: req.user._id,
       amount: req.body.amount,
       note: req.body.note
     } 

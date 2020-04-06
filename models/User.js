@@ -27,7 +27,6 @@ const userSchema = new mongoose.Schema({
   },
   institution: {
     type: String,
-    required: false,
     default: ''
   },
   refreshToken: {
